@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(
+    title="ProductivityHub API",
+    description="Backend API for ProductivityHub",
+    version="0.1.0",
+    )
 
 @app.get("/")
 def read_root():
