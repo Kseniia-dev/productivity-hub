@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 
 from app.schemas.task import TaskRead, TaskCreate
@@ -16,6 +16,13 @@ next_task_id = 1
 def get_tasks():
     return task_storage
 
+
+@router.get("/{task_id}", response_model=TaskRead)
+def get_task(task_id: int):
+    for task in task_storage:
+        if task["id"] == task_id:
+            return task
+    raise HTTPException(status_code=404, detail="Task not found")
 
 
 
