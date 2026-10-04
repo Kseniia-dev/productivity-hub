@@ -15,15 +15,25 @@ next_task_id = 1
 
 
 @router.get("", response_model=list[TaskRead])
-def get_tasks(task_date: Date | None = None):
-    if task_date is None:
-        return task_storage
+def get_tasks(
+    task_date: Date | None = None,
+    user_id: int | None = None,
+):
+    result = task_storage
 
-    filtered_tasks = [
-        task for task in task_storage
-        if task["date"] == task_date
-    ]
-    return filtered_tasks
+    if user_id is not None:      
+        result = [
+            task for task in result
+            if task["user_id"] == user_id
+        ]
+
+    if task_date is not None:
+        result = [
+            task for task in result
+            if task["date"] == task_date
+        ]
+    
+    return result
 
 
 @router.get("/{task_id}", response_model=TaskRead)

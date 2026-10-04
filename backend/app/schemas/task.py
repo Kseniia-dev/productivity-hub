@@ -22,7 +22,7 @@ class TaskBase(BaseModel):
     start_time: Time | None = None
     estimated_minutes: int | None = Field(default=None, gt=0)
     status: TaskStatus = TaskStatus.planned
-
+    user_id: int = Field(gt=0)
 
 class TaskCreate(TaskBase):
     pass
