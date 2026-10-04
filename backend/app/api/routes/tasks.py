@@ -4,6 +4,8 @@ from fastapi import APIRouter, HTTPException
 from app.schemas.task import TaskRead, TaskCreate, TaskUpdate
 
 
+from datetime import date as Date
+
 router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
 
@@ -13,8 +15,15 @@ next_task_id = 1
 
 
 @router.get("", response_model=list[TaskRead])
-def get_tasks():
-    return task_storage
+def get_tasks(task_date: Date | None = None):
+    if task_date is None:
+        return task_storage
+
+    filtered_tasks = [
+        task for task in task_storage
+        if task["date"] == task_date
+    ]
+    return filtered_tasks
 
 
 @router.get("/{task_id}", response_model=TaskRead)
