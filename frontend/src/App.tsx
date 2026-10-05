@@ -1,13 +1,8 @@
 import './App.css'
+import HomePage from './pages/HomePage'
 
 function App() {
-
-  return (
-    <main>
-      <h1>ProductivityHub</h1>
-      <p>Plan your day, focus your work, track your progress</p>
-    </main>
-  )
+  return <HomePage />
 }
 
 export default App
