@@ -5,7 +5,23 @@ type TaskItemProps = {
 }
 
 function TaskItem({ task }: TaskItemProps) {
-    return <li>{task.title}</li>
+    return (
+        <li>
+            <h2>{task.title}</h2>
+            <p>{task.status}</p>
+            <p>Date: {task.date}</p>
+
+            {task.description !== null && (
+                <p>{task.description}</p>
+            )}
+            {task.start_time !== null && (
+                <p>Start: {task.start_time}</p>
+            )}
+            {task.estimated_minutes !== null && (
+                <p>Estimate: {task.estimated_minutes} min</p>
+            )}
+        </li>
+    )
 }
 
 export default TaskItem
