@@ -4,6 +4,8 @@ import { getTasks } from '../api/tasks'
 
 import type { Task } from '../types/task'
 
+import TaskList from '../components/TaskList'
+
 function HomePage() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -34,11 +36,7 @@ function HomePage() {
       {error !== null && <p>{error}</p>}
 
       {!isLoading && error === null && (
-        <ul>
-          {tasks.map((task) => (
-            <li key={task.id}>{task.title}</li>
-          ))}
-        </ul>
+        <TaskList tasks={tasks} />
       )}
     </main>
   )
