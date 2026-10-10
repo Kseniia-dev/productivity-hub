@@ -9,7 +9,7 @@ type TaskListProps = {
 
 function TaskList({ tasks }: TaskListProps) {
     return (
-        <ul>
+        <ul className="task-list">
             {tasks.map((task) => (
                 <TaskItem key={task.id} task={task} />
             ))}
