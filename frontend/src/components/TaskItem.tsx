@@ -2,22 +2,20 @@ import type { Task } from '../types/task'
 
 import { formatTaskDate, formatTaskTime } from '../utils/formatTask'
 
+import TaskStatusBadge from './TaskStatusBadge'
+
 type TaskItemProps = {
   task: Task
 }
 
-function TaskItem({ task }: TaskItemProps) {
-    const statusClassName = 'task-status task-status-' + task.status
-    
+function TaskItem({ task }: TaskItemProps) {    
     return (
         <li className="task-card">
             <h2 className="task-title">{task.title}</h2>
             
             <p className="task-meta">
-                Status: {' '}
-                <span className={statusClassName}>
-                    {task.status.replace('_', ' ')}
-                </span>
+                Status: {''}
+                <TaskStatusBadge status={task.status} />
             </p>
             
             <p className="task-meta">Date: {formatTaskDate(task.date)}</p>
