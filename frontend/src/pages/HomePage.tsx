@@ -4,7 +4,7 @@ import { getTasks } from '../api/tasks'
 
 import type { Task } from '../types/task'
 
-import TaskList from '../components/TaskList'
+import TaskListState from '../components/TaskListState'
 
 function HomePage() {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -30,14 +30,12 @@ function HomePage() {
     <main>
       <h1>ProductivityHub</h1>
       <p>Plan your day, focus your work, track your progress</p>
-
-      {isLoading && <p>Loading tasks...</p>}
-
-      {error !== null && <p>{error}</p>}
-
-      {!isLoading && error === null && (
-        <TaskList tasks={tasks} />
-      )}
+      
+      <TaskListState
+        tasks={tasks}
+        isLoading={isLoading}
+        error={error}
+      />
     </main>
   )
 }
