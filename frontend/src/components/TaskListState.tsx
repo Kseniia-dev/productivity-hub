@@ -10,15 +10,15 @@ type TaskListStateProps = {
 
 function TaskListState({ tasks, isLoading, error }: TaskListStateProps) {
     if (isLoading) {
-        return <p>Loading tasks...</p>
+        return <p className="task-state">Loading tasks...</p>
     }
 
     if (error !== null) {
-        return <p>{error}</p>
+        return <p className="task-state task-state-error">{error}</p>
     }
 
     if (tasks.length === 0) {
-        return <p>No tasks yet</p>
+        return <p className="task-state">No tasks yet</p>
     }
 
     return <TaskList tasks={tasks} />
