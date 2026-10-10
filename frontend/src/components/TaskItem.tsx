@@ -7,10 +7,19 @@ type TaskItemProps = {
 }
 
 function TaskItem({ task }: TaskItemProps) {
+    const statusClassName = 'task-status task-status-' + task.status
+    
     return (
         <li className="task-card">
             <h2 className="task-title">{task.title}</h2>
-            <p className="task-meta">Status: {task.status}</p>
+            
+            <p className="task-meta">
+                Status: {' '}
+                <span className={statusClassName}>
+                    {task.status.replace('_', ' ')}
+                </span>
+            </p>
+            
             <p className="task-meta">Date: {formatTaskDate(task.date)}</p>
 
             {task.description !== null && (
