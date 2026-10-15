@@ -5,6 +5,7 @@ export type TaskStatus =
     | 'undone'
     | 'cancelled'
 
+export type TaskStatusFilterValue = TaskStatus | 'all'
 
 export type Task = {
     id: number

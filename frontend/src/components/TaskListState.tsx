@@ -7,13 +7,15 @@ type TaskListStateProps = {
     isLoading: boolean
     error: string | null
     onRetry: () => void
+    emptyMessage: string
 }
 
 function TaskListState({ 
     tasks, 
     isLoading, 
     error, 
-    onRetry, 
+    onRetry,
+    emptyMessage,
 }: TaskListStateProps) {
     if (isLoading) {
         return <p className="task-state">Loading tasks...</p>
@@ -35,7 +37,7 @@ function TaskListState({
     }
                
     if (tasks.length === 0) {
-        return <p className="task-state">No tasks yet</p>
+        return <p className="task-state">{emptyMessage}</p>
     }
 
     return <TaskList tasks={tasks} />
