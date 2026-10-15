@@ -1,31 +1,9 @@
-import { useEffect, useState } from 'react'
-
-import { getTasks } from '../api/tasks'
-
-import type { Task } from '../types/task'
+import { useTasks } from '../hooks/useTasks'
 
 import TaskListState from '../components/TaskListState'
 
 function HomePage() {
-  const [tasks, setTasks] = useState<Task[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    async function loadTasks() {
-      try {
-        const loadedTasks = await getTasks()
-        setTasks(loadedTasks)
-      } catch {
-        setError('Failed to load tasks')
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    loadTasks()
-  }, [])
-
+  const { tasks, isLoading, error } = useTasks()
   return (
     <main>
       <h1>ProductivityHub</h1>
