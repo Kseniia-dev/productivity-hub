@@ -8,15 +8,24 @@ type UseTasksResult = {
     tasks: Task[]
     isLoading: boolean
     error: string | null
+    reloadTasks: () => void
 }
 
 export function useTasks(): UseTasksResult {
     const [tasks, setTasks] = useState<Task[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
+    const [reloadCount, setReloadCount] = useState(0)
+
+    function reloadTasks() {
+        setReloadCount((count) => count + 1)
+    }
 
     useEffect(() => {
         async function loadTasks() {
+            setIsLoading(true)
+            setError(null)
+
             try {
                 const loadedTasks = await getTasks()
                 setTasks(loadedTasks)
@@ -27,6 +36,6 @@ export function useTasks(): UseTasksResult {
             }
         }
         loadTasks()
-    }, [])
-    return { tasks, isLoading, error }
+    }, [reloadCount])
+    return { tasks, isLoading, error, reloadTasks }
 }

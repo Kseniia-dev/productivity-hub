@@ -96,3 +96,22 @@ p {
   color: #fecaca;
   border-color: #7f1d1d;
 }
+
+.task-retry {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  background: #263244;
+  color: #f3f4f6;     
+  cursor: pointer;
+}
+
+.task-retry:hover {
+  background: #34445a;
+}
+
+.task-retry:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 3px;
+}

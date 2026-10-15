@@ -3,7 +3,7 @@ import { useTasks } from '../hooks/useTasks'
 import TaskListState from '../components/TaskListState'
 
 function HomePage() {
-  const { tasks, isLoading, error } = useTasks()
+  const { tasks, isLoading, error, reloadTasks } = useTasks()
   return (
     <main>
       <h1>ProductivityHub</h1>
@@ -13,6 +13,7 @@ function HomePage() {
         tasks={tasks}
         isLoading={isLoading}
         error={error}
+        onRetry={reloadTasks}
       />
     </main>
   )
