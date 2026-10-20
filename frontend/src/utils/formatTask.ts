@@ -1,5 +1,5 @@
 export function formatTaskDate(date: string) {
-    const parsedDate = new Date(date)
+    const parsedDate = new Date(date + 'T12:00:00')
 
     return new Intl.DateTimeFormat('en', {
         month: 'short',

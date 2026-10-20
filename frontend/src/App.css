@@ -139,3 +139,50 @@ p {
   outline: 2px solid #93c5fd;
   outline-offset: 3px;
 }
+
+.task-date {
+  width: min(100%, 560px);
+  margin: 24px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.task-date input {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  background: #1f2028;
+  color: #f3f4f6;
+  color-scheme: dark;
+}
+
+.task-date-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.task-date-actions button {
+  min-height: 42px;
+  padding: 8px;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  background: #263244;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.task-date-actions button:hover {
+  background: #34445a;
+}
+
+.task-date input:focus-visible,
+.task-date-actions button:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 3px;
+}
