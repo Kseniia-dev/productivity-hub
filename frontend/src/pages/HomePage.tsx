@@ -12,12 +12,21 @@ import { getTodayDate } from '../utils/taskDate'
 
 import TaskDateNavigation from '../components/TaskDateNavigation'
 
+import TaskMonthCalendar from '../components/TaskMonthCalendar'
+
 
 function HomePage() {
   const { tasks, isLoading, error, reloadTasks } = useTasks()
   const [selectedStatus, setSelectedStatus] =
     useState<TaskStatusFilterValue>('all')
   const [selectedDate, setSelectedDate] = useState(getTodayDate)
+  const [visibleMonth, setVisibleMonth] = useState(() => {
+    return new Date(selectedDate + 'T12:00:00')
+  })
+  function handleDateChange(date: string) {
+    setSelectedDate(date)
+    setVisibleMonth(new Date(date + 'T12:00:00'))
+  }
   const dateTasks = tasks.filter((task) => {
     return task.date === selectedDate
   })
@@ -32,9 +41,16 @@ function HomePage() {
       <h1>ProductivityHub</h1>
       <p>Plan your day, focus your work, track your progress</p>
       
+      <TaskMonthCalendar
+          value={selectedDate}
+          month={visibleMonth}
+          onChange={handleDateChange}
+          onMonthChange={setVisibleMonth}
+      />
+
       <TaskDateNavigation
           value={selectedDate}
-          onChange={setSelectedDate}
+          onChange={handleDateChange}
       />
 
       <TaskStatusFilter

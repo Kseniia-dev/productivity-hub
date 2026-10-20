@@ -186,3 +186,37 @@ p {
   outline: 2px solid #93c5fd;
   outline-offset: 3px;
 }
+
+.task-calendar {
+  width: min(100%, 560px);
+  margin: 24px auto 0;
+  text-align: left;
+}
+
+.task-calendar .rdp-root {
+  --rdp-accent-color: #93c5fd;
+  --rdp-today-color: #fbbf24;
+  --rdp-day-width: 36px;
+  --rdp-day-height: 36px;
+  --rdp-day_button-width: 34px;
+  --rdp-day_button-height: 34px;
+  --rdp-day_button-border-radius: 6px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.task-calendar .rdp-selected {
+  font-size: inherit;
+}
+.task-calendar .rdp-selected .rdp-day_button {
+  background: #263244;
+}
+
+.task-calendar .rdp-day_button:hover {
+  background: #34445a;
+}
+
+.task-calendar button:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}

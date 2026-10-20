@@ -1,3 +1,4 @@
+import '@daypicker/react/style.css'
 import './App.css'
 import HomePage from './pages/HomePage'
 
