@@ -17,3 +17,5 @@ export type Task = {
     status: TaskStatus
     user_id: number
 }
+
+export type TaskCreate = Omit<Task, 'id'>
