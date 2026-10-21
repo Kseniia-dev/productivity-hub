@@ -197,9 +197,9 @@ p {
   --rdp-accent-color: #93c5fd;
   --rdp-today-color: #fbbf24;
   --rdp-day-width: 36px;
-  --rdp-day-height: 36px;
+  --rdp-day-height: 44px;
   --rdp-day_button-width: 34px;
-  --rdp-day_button-height: 34px;
+  --rdp-day_button-height: 42px;
   --rdp-day_button-border-radius: 6px;
   width: max-content;
   margin: 0 auto;
@@ -219,4 +219,25 @@ p {
 .task-calendar button:focus-visible {
   outline: 2px solid #93c5fd;
   outline-offset: 2px;
+}
+
+.task-calendar .calendar-day-has-tasks .rdp-day_button {
+  position: relative;
+}
+
+.task-calendar .calendar-day-has-tasks .rdp-day_button::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #67e8f9;
+  pointer-events: none;
+}
+
+.task-calendar .rdp-day_button {
+  padding-bottom: 8px;
 }

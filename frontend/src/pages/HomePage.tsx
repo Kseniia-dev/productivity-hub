@@ -43,6 +43,7 @@ function HomePage() {
       
       <TaskMonthCalendar
           value={selectedDate}
+          tasks={tasks}
           month={visibleMonth}
           onChange={handleDateChange}
           onMonthChange={setVisibleMonth}
