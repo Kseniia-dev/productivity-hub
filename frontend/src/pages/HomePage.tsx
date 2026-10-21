@@ -4,7 +4,7 @@ import { useTasks } from '../hooks/useTasks'
 
 import TaskListState from '../components/TaskListState'
 
-import type { TaskStatusFilterValue } from '../types/task'
+import type {Task, TaskStatusFilterValue } from '../types/task'
 
 import TaskStatusFilter from '../components/TaskStatusFilter'
 
@@ -13,6 +13,9 @@ import { getTodayDate } from '../utils/taskDate'
 import TaskDateNavigation from '../components/TaskDateNavigation'
 
 import TaskMonthCalendar from '../components/TaskMonthCalendar'
+
+import TaskCreateForm from '../components/TaskCreateForm'
+
 
 
 function HomePage() {
@@ -26,6 +29,11 @@ function HomePage() {
   function handleDateChange(date: string) {
     setSelectedDate(date)
     setVisibleMonth(new Date(date + 'T12:00:00'))
+  }
+  function handleTaskCreated(task: Task) {
+    handleDateChange(task.date)
+    setSelectedStatus('all')
+    reloadTasks()
   }
   const dateTasks = tasks.filter((task) => {
     return task.date === selectedDate
@@ -52,6 +60,12 @@ function HomePage() {
       <TaskDateNavigation
           value={selectedDate}
           onChange={handleDateChange}
+      />
+
+      <TaskCreateForm
+          date={selectedDate}
+          onDateChange={handleDateChange}
+          onCreated={handleTaskCreated}
       />
 
       <TaskStatusFilter
