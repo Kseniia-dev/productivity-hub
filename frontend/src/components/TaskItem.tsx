@@ -4,11 +4,14 @@ import { formatTaskDate, formatTaskTime } from '../utils/formatTask'
 
 import TaskStatusBadge from './TaskStatusBadge'
 
+import TaskStatusSelect  from './TaskStatusSelect'
+
 type TaskItemProps = {
   task: Task
+  onTaskUpdated: () => void
 }
 
-function TaskItem({ task }: TaskItemProps) {    
+function TaskItem({ task, onTaskUpdated }: TaskItemProps) {    
     return (
         <li className="task-card">
             <h2 className="task-title">{task.title}</h2>
@@ -31,6 +34,11 @@ function TaskItem({ task }: TaskItemProps) {
             {task.estimated_minutes !== null && (
                 <p className="task-meta">Estimate: {task.estimated_minutes} min</p>
             )}
+            <TaskStatusSelect
+                taskId={task.id}
+                status={task.status}
+                onUpdated={onTaskUpdated}
+            />
         </li>
     )
 }

@@ -4,6 +4,7 @@ import TaskList from './TaskList'
 
 type TaskListStateProps = {
     tasks: Task[]
+    onTaskUpdated: () => void
     isLoading: boolean
     error: string | null
     onRetry: () => void
@@ -11,7 +12,8 @@ type TaskListStateProps = {
 }
 
 function TaskListState({ 
-    tasks, 
+    tasks,
+    onTaskUpdated,
     isLoading, 
     error, 
     onRetry,
@@ -40,7 +42,7 @@ function TaskListState({
         return <p className="task-state">{emptyMessage}</p>
     }
 
-    return <TaskList tasks={tasks} />
+    return <TaskList tasks={tasks} onTaskUpdated={onTaskUpdated}/>
 }
 
 export default TaskListState

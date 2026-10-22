@@ -5,13 +5,14 @@ import TaskItem from './TaskItem'
 
 type TaskListProps = {
   tasks: Task[]
+  onTaskUpdated: () => void
 }
 
-function TaskList({ tasks }: TaskListProps) {
+function TaskList({ tasks, onTaskUpdated }: TaskListProps) {
     return (
         <ul className="task-list">
             {tasks.map((task) => (
-                <TaskItem key={task.id} task={task} />
+                <TaskItem key={task.id} task={task} onTaskUpdated={onTaskUpdated} />
             ))}
         </ul>
     )

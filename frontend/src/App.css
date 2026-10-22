@@ -319,3 +319,37 @@ p {
 min-height: 100px;
 resize: vertical;
 }
+
+.task-status-control {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.task-status-control select {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid #64748b;
+  border-radius: 6px;
+  background: #1f2028;
+  color: #f3f4f6;
+}
+
+.task-status-control select:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+.task-status-control select:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.task-status-message {
+  overflow-wrap: anywhere;
+}
+
+.task-status-error {
+  color: #fecaca;
+}

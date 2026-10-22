@@ -75,6 +75,7 @@ function HomePage() {
       
       <TaskListState
         tasks={filteredTasks}
+        onTaskUpdated={reloadTasks}
         isLoading={isLoading}
         error={error}
         onRetry={reloadTasks}
