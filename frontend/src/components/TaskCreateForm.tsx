@@ -15,6 +15,9 @@ function TaskCreateForm({
     onCreated,
 }: TaskCreateFormProps) {
     const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [startTime, setStartTime] = useState('')
+    const [estimatedMinutes, setEstimatedMinutes] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitError, setSubmitError] = useState<string | null>(null)
     const [successMessage, setSuccessMessage] =
@@ -30,6 +33,19 @@ function TaskCreateForm({
                 setSubmitError('Enter a task title')
                 return
             }
+            
+            const minutesText = estimatedMinutes.trim()
+            const parsedMinutes = minutesText === '' ? null : Number(minutesText)
+
+            if (
+                parsedMinutes !== null &&
+                (!Number.isSafeInteger(parsedMinutes) || parsedMinutes <= 0)
+            ) {
+                setSubmitError('Enter a positive whole number of minutes')
+                return
+            }
+            
+            const trimmedDescription = description.trim()
 
             setIsSubmitting(true)
             setSubmitError(null)
@@ -37,10 +53,14 @@ function TaskCreateForm({
 
             const taskData: TaskCreate = {
                 title: trimmedTitle,
-                description: null,
+                description: trimmedDescription === ''
+                    ? null
+                    : trimmedDescription,
                 date,
-                start_time: null,
-                estimated_minutes: null,
+                start_time: startTime === ''
+                    ? null
+                    : startTime,
+                estimated_minutes: parsedMinutes,
                 status: 'planned',
                 user_id: 1,
             }
@@ -48,6 +68,9 @@ function TaskCreateForm({
             try {
                 const createdTask = await createTask(taskData)
                 setTitle('')
+                setDescription('')
+                setStartTime('')
+                setEstimatedMinutes('')
                 setSuccessMessage('Task created')
                 onCreated(createdTask)
             } catch {
@@ -88,6 +111,41 @@ function TaskCreateForm({
                         if (nextDate !== '') onDateChange(nextDate)
                     }}
                     required
+                />
+                <label htmlFor="new-task-description">Description</label>
+                <textarea
+                    id="new-task-description"
+                    rows={4}
+                    value={description}
+                    onChange={(event) => {
+                        setDescription(event.currentTarget.value)
+                        setSubmitError(null)
+                        setSuccessMessage(null)
+                    }}
+                />
+                <label htmlFor="new-task-start-time">Start time</label>
+                <input
+                   id="new-task-start-time"
+                   type="time"
+                   value={startTime}
+                   onChange={(event) => {
+                    setStartTime(event.currentTarget.value)
+                    setSubmitError(null)
+                    setSuccessMessage(null)
+                   }}
+                />
+                <label htmlFor="new-task-estimated-minutes">Estimated minutes</label>
+                <input
+                   id="new-task-estimated-minutes"
+                   type="number"
+                   min={1}
+                   step={1}
+                   value={estimatedMinutes}
+                   onChange={(event) => {
+                    setEstimatedMinutes(event.currentTarget.value)
+                    setSubmitError(null)
+                    setSuccessMessage(null)
+                   }}
                 />
                 <button type="submit">
                     {isSubmitting ? 'Creating...' : 'Create task'}

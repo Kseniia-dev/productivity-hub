@@ -43,6 +43,8 @@ p {
 .task-description {
   margin: 12px 0;
   color: #f3f4f6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .task-state {
@@ -263,7 +265,8 @@ p {
   gap: 8px;
 }
 
-.task-create-form input {
+.task-create-form input,
+.task-create-form textarea {
   width: 100%;
   min-width: 0;
   min-height: 42px;
@@ -289,12 +292,14 @@ p {
 }
 
 .task-create-form button:disabled,
-.task-create-form input:disabled {
+.task-create-form input:disabled,
+.task-create-form textarea:disabled {
   opacity: 0.6;
   cursor: wait;
 }
 .task-create-form input:focus-visible,
-.task-create-form button:focus-visible {
+.task-create-form button:focus-visible,
+.task-create-form textarea:focus-visible {
   outline: 2px solid #93c5fd;
   outline-offset: 3px;
 }
@@ -308,4 +313,9 @@ p {
 }
 .task-create-success {
   color: #bbf7d0;
+}
+
+.task-create-form textarea {
+min-height: 100px;
+resize: vertical;
 }
