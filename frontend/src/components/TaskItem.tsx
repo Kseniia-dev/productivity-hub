@@ -6,6 +6,8 @@ import TaskStatusBadge from './TaskStatusBadge'
 
 import TaskStatusSelect  from './TaskStatusSelect'
 
+import TaskDeleteButton from './TaskDeleteButton'
+
 type TaskItemProps = {
   task: Task
   onTaskUpdated: () => void
@@ -38,6 +40,11 @@ function TaskItem({ task, onTaskUpdated }: TaskItemProps) {
                 taskId={task.id}
                 status={task.status}
                 onUpdated={onTaskUpdated}
+            />
+            <TaskDeleteButton
+                taskId={task.id}
+                taskTitle={task.title}
+                onDeleted={onTaskUpdated}
             />
         </li>
     )

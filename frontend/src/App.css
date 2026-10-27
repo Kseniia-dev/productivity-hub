@@ -353,3 +353,42 @@ resize: vertical;
 .task-status-error {
   color: #fecaca;
 }
+
+.task-delete-control {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.task-delete-button {
+  min-height: 42px;
+  width: 100%;
+  padding: 8px 14px;
+  border: 1px solid #7f1d1d;
+  border-radius: 6px;
+  background: #3f1d1d;
+  color: #fecaca;
+  cursor: pointer;
+}
+
+.task-delete-button:hover:not(:disabled) {
+  background: #5a2525;
+}
+
+.task-delete-button:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+.task-delete-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.task-delete-message {
+  overflow-wrap: anywhere;
+}
+
+.task-delete-error {
+  color: #fecaca;
+}
