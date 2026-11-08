@@ -1,4 +1,4 @@
-import type { Task, TaskCreate, TaskStatus } from '../types/task'
+import type { Task, TaskCreate, TaskStatus, TaskUpdate } from '../types/task'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -58,6 +58,25 @@ export async function deleteTask(
 
     if (!response.ok) {
         throw new Error('Failed to delete task')
+    }
+
+    return response.json()
+}
+
+export async function updateTask(
+    taskId: number,
+    taskData: TaskUpdate,
+): Promise<Task> {
+    const response = await fetch(API_URL + '/tasks/' + taskId, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(taskData),
+    })
+
+    if (!response.ok) {
+        throw new Error('Failed to update task')
     }
 
     return response.json()

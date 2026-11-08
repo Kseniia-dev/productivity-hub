@@ -19,3 +19,10 @@ export type Task = {
 }
 
 export type TaskCreate = Omit<Task, 'id'>
+
+export type TaskUpdate = {
+    title?: string
+    description?: string | null
+    start_time?: string | null
+    estimated_minutes?: number | null
+}
