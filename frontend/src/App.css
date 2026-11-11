@@ -99,7 +99,8 @@ p {
   border-color: #7f1d1d;
 }
 
-.task-retry {
+.task-retry,
+.task-edit-trigger {
   margin-top: 12px;
   padding: 8px 14px;
   border: 1px solid #64748b;
@@ -109,11 +110,13 @@ p {
   cursor: pointer;
 }
 
-.task-retry:hover {
+.task-retry:hover,
+.task-edit-trigger:hover {
   background: #34445a;
 }
 
-.task-retry:focus-visible {
+.task-retry:focus-visible,
+.task-edit-trigger:focus-visible {
   outline: 2px solid #93c5fd;
   outline-offset: 3px;
 }
@@ -256,7 +259,7 @@ p {
   font-size: 20px;
 }
 
-.task-create-form fieldset {
+:is(.task-create-form, .task-edit-form) fieldset {
   min-width: 0;
   margin: 0;
   padding: 0;
@@ -265,8 +268,8 @@ p {
   gap: 8px;
 }
 
-.task-create-form input,
-.task-create-form textarea {
+:is(.task-create-form, .task-edit-form) input,
+:is(.task-create-form, .task-edit-form) textarea {
   width: 100%;
   min-width: 0;
   min-height: 42px;
@@ -278,7 +281,7 @@ p {
   color-scheme: dark;
 }
 
-.task-create-form button {
+:is(.task-create-form, .task-edit-form) button {
   min-height: 42px;
   margin-top: 4px;
   border: 1px solid #64748b;
@@ -287,19 +290,19 @@ p {
   color: #f3f4f6;
   cursor: pointer;
 }
-.task-create-form button:hover:not(:disabled) {
+:is(.task-create-form, .task-edit-form) button:hover:not(:disabled) {
   background: #34445a;
 }
 
-.task-create-form button:disabled,
-.task-create-form input:disabled,
-.task-create-form textarea:disabled {
+:is(.task-create-form, .task-edit-form) button:disabled,
+:is(.task-create-form, .task-edit-form) input:disabled,
+:is(.task-create-form, .task-edit-form) textarea:disabled {
   opacity: 0.6;
   cursor: wait;
 }
-.task-create-form input:focus-visible,
-.task-create-form button:focus-visible,
-.task-create-form textarea:focus-visible {
+:is(.task-create-form, .task-edit-form) input:focus-visible,
+:is(.task-create-form, .task-edit-form) button:focus-visible,
+:is(.task-create-form, .task-edit-form) textarea:focus-visible {
   outline: 2px solid #93c5fd;
   outline-offset: 3px;
 }
@@ -315,7 +318,7 @@ p {
   color: #bbf7d0;
 }
 
-.task-create-form textarea {
+:is(.task-create-form, .task-edit-form) textarea {
 min-height: 100px;
 resize: vertical;
 }
@@ -391,4 +394,18 @@ resize: vertical;
 
 .task-delete-error {
   color: #fecaca;
+}
+
+.task-edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.task-edit-actions button {
+  padding: 8px 14px;
+}
+
+.task-edit-form {
+  margin-top: 16px;
 }
